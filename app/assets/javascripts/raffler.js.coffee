@@ -3,7 +3,7 @@ window.Raffler =
   Collections: {}
   Views: {}
   Routers: {}
-  initialize: -> 
+  initialize: ->
     new Raffler.Routers.Entries()
     Backbone.history.start(pushState: true)
 
