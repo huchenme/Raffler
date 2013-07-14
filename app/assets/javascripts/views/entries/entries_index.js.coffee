@@ -1,6 +1,6 @@
 class Raffler.Views.EntriesIndex extends Backbone.View
 
-  template: JST['entries/index']
+  template: HandlebarsTemplates['entries/index']
 
   events:
     'submit #new_entry': 'createEntry'
