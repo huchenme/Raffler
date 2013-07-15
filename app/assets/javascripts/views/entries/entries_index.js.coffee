@@ -9,6 +9,7 @@ class Raffler.Views.EntriesIndex extends Backbone.View
   initialize: ->
     @collection.on('reset', @render, this)
     @collection.on('add', @appendEntry, this)
+    @collection.on('remove', @removeEntry, this)
 
   render: ->
     $(@el).html(@template())
@@ -36,3 +37,6 @@ class Raffler.Views.EntriesIndex extends Backbone.View
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
         alert "#{attribute} #{message}" for message in messages
+
+  removeEntry: (entry) ->
+    console.log entry

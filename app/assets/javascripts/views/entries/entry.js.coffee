@@ -4,11 +4,13 @@ class Raffler.Views.Entry extends Backbone.View
   tagName: 'li'
 
   events:
-    'click': 'showEntry'
+    'click .show_entry': 'showEntry'
+    'click .delete': 'deleteEntry'
 
   initialize: ->
     @model.on('change', @render, this)
     @model.on('highlight', @highlightWinner, this)
+    @model.on('destroy', @removeEntry, this)
 
   showEntry: ->
     Backbone.history.navigate("entries/#{@model.get('id')}", true)
@@ -20,3 +22,11 @@ class Raffler.Views.Entry extends Backbone.View
   render: ->
     $(@el).html(@template(@model.toJSON()))
     this
+
+  deleteEntry: ->
+    event.preventDefault()
+    @model.destroy
+      success: (model, response) ->
+
+  removeEntry: ->
+    $(@el).remove()
